@@ -84,7 +84,23 @@ namespace RaiBlocks
             var handler = new ActionHandler<GetAccountByPublicKey, GetAccountByPublicKeyResult>(_node);
             return await handler.Handle(action);
         }
-        
+
+        /// <summary>
+        /// enable_control required
+        /// Send amount from source in wallet to destination
+        /// </summary>
+        /// <param name="wallet">Wallet</param>
+        /// <param name="source">Source</param>
+        /// <param name="destination">Destination</param>
+        /// <param name="amount">Amount in XRB. (RAW 10^30).</param>
+        /// <returns></returns>
+        public async Task<SendResult> SendAsync(string wallet, RaiAddress source, RaiAddress destination, decimal amount)
+        {
+            var action = new Send(wallet, source, destination, amount);
+            var handler = new ActionHandler<Send, SendResult>(_node);
+            return await handler.Handle(action);
+        }
+
         #endregion
     }
 }
