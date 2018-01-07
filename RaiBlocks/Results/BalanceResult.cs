@@ -5,12 +5,12 @@ namespace RaiBlocks.Results
 {
     public class BalanceResult
     {
-        [JsonConverter(typeof(RawToXrbConverter))]
+        [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("balance")]
-        public decimal Balance { get; set; }
+        public RaiUnits.RaiRaw Balance { get; set; }
 
-        [JsonConverter(typeof(RawToXrbConverter))]
+        [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("pending")]
-        public decimal Pending { get; set; }
+        public RaiUnits.RaiRaw Pending { get; set; }
     }
 }

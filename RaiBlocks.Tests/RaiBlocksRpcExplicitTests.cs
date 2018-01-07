@@ -27,5 +27,11 @@ namespace RaiBlocks.Tests
         {
             var x = await _node.GetAccountInformationAsync(_address);
         }
+
+        [Test]
+        public async Task GetAccountHistory()
+        {
+            var x = await _node.GetAccountHistoryAsync(_address, 200);
+        }
     }
 }

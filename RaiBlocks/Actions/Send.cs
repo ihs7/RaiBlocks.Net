@@ -3,7 +3,6 @@ using RaiBlocks.Converters;
 using RaiBlocks.Interfaces;
 using RaiBlocks.Results;
 using RaiBlocks.ValueObjects;
-using System;
 
 namespace RaiBlocks.Actions
 {
@@ -21,15 +20,12 @@ namespace RaiBlocks.Actions
         [JsonProperty("destination")]
         public RaiAddress Destination { get; private set; }
 
-        [JsonConverter(typeof(XrbToRawConverter))]
+        [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("send")]
-        public decimal Amount { get; private set; }
+        public RaiUnits.RaiRaw Amount { get; private set; }
 
-        public Send(string wallet, RaiAddress source, RaiAddress destination, decimal amount)
+        public Send(string wallet, RaiAddress source, RaiAddress destination, RaiUnits.RaiRaw amount)
         {
-            if (amount <= 0)
-                throw new ArgumentException("Amount must be larger than 0");
-
             Wallet = wallet;
             Destination = destination;
             Amount = amount;

@@ -32,10 +32,10 @@ namespace RaiBlocks
         #region Actions
 
         /// <summary>
-        /// Returns how many XRB (10^30 RAW) is owned and how many have not yet been received by account.
+        /// Returns how many RAW is owned and how many have not yet been received by account.
         /// </summary>
         /// <param name="acc">The account to get balance for.</param>
-        /// <returns>Balance of <paramref name="acc"/> in XRB. (10^30 RAW).</returns>
+        /// <returns>Balance of <paramref name="acc"/> in RAW.</returns>
         public async Task<BalanceResult> GetBalanceAsync(RaiAddress acc)
         {
             var action = new GetBalance(acc);
@@ -86,15 +86,25 @@ namespace RaiBlocks
         }
 
         /// <summary>
+        /// Reports send/receive information for a account
+        /// </summary>>
+        public async Task<AccountHistoryResult> GetAccountHistoryAsync(RaiAddress acc, int count = 1)
+        {
+            var action = new GetAccountHistory(acc, count);
+            var handler = new ActionHandler<GetAccountHistory, AccountHistoryResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        /// <summary>
         /// enable_control required
         /// Send amount from source in wallet to destination
         /// </summary>
         /// <param name="wallet">Wallet</param>
-        /// <param name="source">Source</param>
+        /// <param name="source">Source</param>create
         /// <param name="destination">Destination</param>
-        /// <param name="amount">Amount in XRB. (RAW 10^30).</param>
+        /// <param name="amount">Amount in RAW.</param>
         /// <returns></returns>
-        public async Task<SendResult> SendAsync(string wallet, RaiAddress source, RaiAddress destination, decimal amount)
+        public async Task<SendResult> SendAsync(string wallet, RaiAddress source, RaiAddress destination, RaiUnits.RaiRaw amount)
         {
             var action = new Send(wallet, source, destination, amount);
             var handler = new ActionHandler<Send, SendResult>(_node);

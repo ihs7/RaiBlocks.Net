@@ -16,9 +16,9 @@ namespace RaiBlocks.Results
         [JsonProperty("representative_block")]
         public string RepresentativeBlock { get; set; }
 
-        [JsonConverter(typeof(RawToXrbConverter))]
+        [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("balance")]
-        public decimal Balance { get; set; }
+        public RaiUnits.RaiRaw Balance { get; set; }
 
         [JsonProperty("modified_timestamp")]
         public DateTime ModifiedTimestamp { get; set; }
@@ -32,8 +32,8 @@ namespace RaiBlocks.Results
         [JsonProperty("weight")]
         public string Weight { get; set; }
 
-        [JsonConverter(typeof(RawToXrbConverter))]
+        [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("pending")]
-        public decimal Pending { get; set; }
+        public RaiUnits.RaiRaw Pending { get; set; }
     }
 }
