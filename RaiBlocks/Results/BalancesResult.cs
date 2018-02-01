@@ -6,7 +6,6 @@ namespace RaiBlocks.Results
 {
     public class BalancesResult
     {
-        //[JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("balances")]
         public Dictionary<string, BalanceResult> Balances { get; set; }
     }

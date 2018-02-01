@@ -2,6 +2,7 @@
 using RaiBlocks.Results;
 using RaiBlocks.ValueObjects;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RaiBlocks
@@ -40,6 +41,13 @@ namespace RaiBlocks
         {
             var action = new GetBalance(acc);
             var handler = new ActionHandler<GetBalance, BalanceResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<BalancesResult> GetBalancesAsync(IEnumerable<RaiAddress> acc)
+        {
+            var action = new GetBalances(acc);
+            var handler = new ActionHandler<GetBalances, BalancesResult>(_node);
             return await handler.Handle(action);
         }
 
@@ -108,6 +116,13 @@ namespace RaiBlocks
         {
             var action = new Send(wallet, source, destination, amount);
             var handler = new ActionHandler<Send, SendResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<ValidateAccountResult> ValidateAccount(RaiAddress acc)
+        {
+            var action = new ValidateAccount(acc);
+            var handler = new ActionHandler<ValidateAccount, ValidateAccountResult>(_node);
             return await handler.Handle(action);
         }
 
