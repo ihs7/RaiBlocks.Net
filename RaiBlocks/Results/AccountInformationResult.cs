@@ -20,6 +20,7 @@ namespace RaiBlocks.Results
         [JsonProperty("balance")]
         public RaiUnits.RaiRaw Balance { get; set; }
 
+        [JsonConverter(typeof(TimeStampToDateConverter))]
         [JsonProperty("modified_timestamp")]
         public DateTime ModifiedTimestamp { get; set; }
 

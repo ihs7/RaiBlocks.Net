@@ -126,6 +126,21 @@ namespace RaiBlocks
             return await handler.Handle(action);
         }
 
+        public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account, RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
+        {
+            var action = new BlockCreate {
+                Type = BlockCreate.BlockCreateType.send,
+                Wallet = wallet,
+                AccountNumber = account,
+                Destination = destination,
+                Balance = balance,
+                Amount = amount,
+                Previous = previous
+            };
+            var handler = new ActionHandler<BlockCreate, BlockCreateResult>(_node);
+            return await handler.Handle(action);
+        }
+
         #endregion
     }
 }
