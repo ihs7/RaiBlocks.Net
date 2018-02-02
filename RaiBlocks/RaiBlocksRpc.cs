@@ -126,6 +126,13 @@ namespace RaiBlocks
             return await handler.Handle(action);
         }
 
+        public async Task<ProcessBlockResult> ProcessBlock(string block)
+        {
+            var action = new ProcessBlock(block);
+            var handler = new ActionHandler<ProcessBlock, ProcessBlockResult>(_node);
+            return await handler.Handle(action);
+        }
+
         public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account, RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
         {
             var action = new BlockCreate {
