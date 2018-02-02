@@ -126,10 +126,17 @@ namespace RaiBlocks
             return await handler.Handle(action);
         }
 
-        public async Task<ProcessBlockResult> ProcessBlock(string block)
+        public async Task<ProcessBlockResult> ProcessBlockAsync(string block)
         {
             var action = new ProcessBlock(block);
             var handler = new ActionHandler<ProcessBlock, ProcessBlockResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<WorkGenerateResult> GetWorkAsync(string hash)
+        {
+            var action = new WorkGenerate(hash);
+            var handler = new ActionHandler<WorkGenerate, WorkGenerateResult>(_node);
             return await handler.Handle(action);
         }
 
@@ -147,6 +154,7 @@ namespace RaiBlocks
             var handler = new ActionHandler<BlockCreate, BlockCreateResult>(_node);
             return await handler.Handle(action);
         }
+
 
         #endregion
     }
