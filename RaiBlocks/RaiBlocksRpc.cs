@@ -143,7 +143,7 @@ namespace RaiBlocks
         public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account, RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
         {
             var action = new BlockCreate {
-                Type = BlockCreate.BlockCreateType.send,
+                Type = BlockType.send,
                 Wallet = wallet,
                 AccountNumber = account,
                 Destination = destination,

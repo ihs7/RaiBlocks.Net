@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using RaiBlocks.Converters;
 using RaiBlocks.Interfaces;
 using RaiBlocks.Results;
+using RaiBlocks.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace RaiBlocks.Actions
 
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("type")]
-        public BlockCreateType Type { get; set; }
+        public BlockType Type { get; set; }
 
         [JsonProperty("key")]
         public string Key { get; set; }
@@ -46,13 +47,5 @@ namespace RaiBlocks.Actions
         [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("amount")]
         public RaiUnits.RaiRaw Amount { get; set; }
-        
-        public enum BlockCreateType
-        {
-            open,
-            receive,
-            send,
-            change
-        }
     }
 }

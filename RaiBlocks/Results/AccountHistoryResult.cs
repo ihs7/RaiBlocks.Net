@@ -1,4 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using RaiBlocks.Converters;
+using RaiBlocks.ValueObjects;
 
 namespace RaiBlocks.Results
 {
@@ -13,13 +16,15 @@ namespace RaiBlocks.Results
         [JsonProperty("hash")]
         public string Frontier { get; set; }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("type")]
-        public string OpenBlock { get; set; }
+        public BlockType Type { get; set; }
 
         [JsonProperty("account")]
         public string RepresentativeBlock { get; set; }
 
+        [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("amount")]
-        public string Amount { get; set; }
+        public RaiUnits.RaiRaw Amount { get; set; }
     }
 }
