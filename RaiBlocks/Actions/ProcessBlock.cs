@@ -10,7 +10,7 @@ namespace RaiBlocks.Actions
     public class ProcessBlock: IAction<ProcessBlockResult>
     {
         [JsonProperty("action")]
-        public string Action { get; } = "account_block_count";
+        public string Action { get; } = "process";
 
         [JsonProperty("block")]
         public string Block { get; set; }
