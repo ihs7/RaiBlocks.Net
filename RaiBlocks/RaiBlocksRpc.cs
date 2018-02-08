@@ -2,6 +2,7 @@
 using RaiBlocks.Results;
 using RaiBlocks.ValueObjects;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RaiBlocks
@@ -40,6 +41,13 @@ namespace RaiBlocks
         {
             var action = new GetBalance(acc);
             var handler = new ActionHandler<GetBalance, BalanceResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<BalancesResult> GetBalancesAsync(IEnumerable<RaiAddress> acc)
+        {
+            var action = new GetBalances(acc);
+            var handler = new ActionHandler<GetBalances, BalancesResult>(_node);
             return await handler.Handle(action);
         }
 
@@ -110,6 +118,43 @@ namespace RaiBlocks
             var handler = new ActionHandler<Send, SendResult>(_node);
             return await handler.Handle(action);
         }
+
+        public async Task<ValidateAccountResult> ValidateAccountAsync(RaiAddress acc)
+        {
+            var action = new ValidateAccount(acc);
+            var handler = new ActionHandler<ValidateAccount, ValidateAccountResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<ProcessBlockResult> ProcessBlockAsync(string block)
+        {
+            var action = new ProcessBlock(block);
+            var handler = new ActionHandler<ProcessBlock, ProcessBlockResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<WorkGenerateResult> GetWorkAsync(string hash)
+        {
+            var action = new WorkGenerate(hash);
+            var handler = new ActionHandler<WorkGenerate, WorkGenerateResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account, RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
+        {
+            var action = new BlockCreate {
+                Type = BlockType.send,
+                Wallet = wallet,
+                AccountNumber = account,
+                Destination = destination,
+                Balance = balance,
+                Amount = amount,
+                Previous = previous
+            };
+            var handler = new ActionHandler<BlockCreate, BlockCreateResult>(_node);
+            return await handler.Handle(action);
+        }
+
 
         #endregion
     }
