@@ -119,7 +119,7 @@ namespace RaiBlocks
             return await handler.Handle(action);
         }
 
-        public async Task<ValidateAccountResult> ValidateAccount(RaiAddress acc)
+        public async Task<ValidateAccountResult> ValidateAccountAsync(RaiAddress acc)
         {
             var action = new ValidateAccount(acc);
             var handler = new ActionHandler<ValidateAccount, ValidateAccountResult>(_node);
