@@ -74,6 +74,21 @@ namespace RaiBlocks
         }
 
         /// <summary>
+        /// Return block by hash.
+        /// </summary>
+        /// <param name="hash">Block hash.</param>
+        /// <returns>Block info.</returns>
+        public async Task<RetrieveBlockResult> GetRetrieveBlockAsync(string hash)
+        {
+            var action = new Actions.RetrieveBlock
+            {
+                Hash = hash
+            };
+            var handler = new ActionHandler<Actions.RetrieveBlock, RetrieveBlockResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        /// <summary>
         /// enable_control required
         // Creates a new account, insert next deterministic key in wallet
         public async Task<CreateAccountResult> CreateAccountAsync(string wallet)
@@ -112,7 +127,8 @@ namespace RaiBlocks
         /// <param name="destination">Destination</param>
         /// <param name="amount">Amount in RAW.</param>
         /// <returns></returns>
-        public async Task<SendResult> SendAsync(string wallet, RaiAddress source, RaiAddress destination, RaiUnits.RaiRaw amount)
+        public async Task<SendResult> SendAsync(string wallet, RaiAddress source, RaiAddress destination,
+            RaiUnits.RaiRaw amount)
         {
             var action = new Send(wallet, source, destination, amount);
             var handler = new ActionHandler<Send, SendResult>(_node);
@@ -140,9 +156,11 @@ namespace RaiBlocks
             return await handler.Handle(action);
         }
 
-        public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account, RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
+        public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account,
+            RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
         {
-            var action = new BlockCreate {
+            var action = new BlockCreate
+            {
                 Type = BlockType.send,
                 Wallet = wallet,
                 AccountNumber = account,
@@ -154,7 +172,6 @@ namespace RaiBlocks
             var handler = new ActionHandler<BlockCreate, BlockCreateResult>(_node);
             return await handler.Handle(action);
         }
-
 
         #endregion
     }
