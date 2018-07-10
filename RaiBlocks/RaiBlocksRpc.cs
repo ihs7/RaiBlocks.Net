@@ -155,6 +155,17 @@ namespace RaiBlocks
             var handler = new ActionHandler<WorkGenerate, WorkGenerateResult>(_node);
             return await handler.Handle(action);
         }
+        
+        public async Task<AccountKeyResult> GetAccountKeyAsync(RaiAddress account)
+        {
+            var action = new AccountKey
+            {
+                AccountNumber = account,
+            };
+            
+            var handler = new ActionHandler<AccountKey, AccountKeyResult>(_node);
+            return await handler.Handle(action);
+        }
 
         public async Task<BlockCreateResult> BlockCreateSendAsync(string wallet, RaiAddress account,
             RaiAddress destination, RaiUnits.RaiRaw balance, RaiUnits.RaiRaw amount, string previous)
