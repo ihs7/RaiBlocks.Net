@@ -89,6 +89,28 @@ namespace RaiBlocks
         }
 
         /// <summary>
+        /// Get blocks info
+        /// </summary>
+        /// <param name="hashes">Blocks hashes.</param>
+        /// <param name="pending">Include panding info</param>
+        /// <param name="source">Include source info</param>
+        /// <param name="balance">Include balance info</param>
+        /// <returns>Block info.</returns>
+        public async Task<RetrieveBlocksInfoResult> GetRetrieveBlocksInfoAsync(List<string> hashes, bool pending = false,
+            bool source = false, bool balance = false)
+        {
+            var action = new RetrieveBlocksInfo
+            {
+                Hashes = hashes,
+                Balance = balance,
+                Pending = pending,
+                Source = source
+            };
+            var handler = new ActionHandler<RetrieveBlocksInfo, RetrieveBlocksInfoResult>(_node);
+            return await handler.Handle(action);
+        }
+
+        /// <summary>
         /// enable_control required
         // Creates a new account, insert next deterministic key in wallet
         public async Task<CreateAccountResult> CreateAccountAsync(string wallet)
@@ -155,14 +177,14 @@ namespace RaiBlocks
             var handler = new ActionHandler<WorkGenerate, WorkGenerateResult>(_node);
             return await handler.Handle(action);
         }
-        
+
         public async Task<AccountKeyResult> GetAccountKeyAsync(RaiAddress account)
         {
             var action = new AccountKey
             {
                 AccountNumber = account,
             };
-            
+
             var handler = new ActionHandler<AccountKey, AccountKeyResult>(_node);
             return await handler.Handle(action);
         }

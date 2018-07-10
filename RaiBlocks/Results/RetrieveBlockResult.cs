@@ -21,14 +21,8 @@ namespace RaiBlocks.Results
         [JsonProperty("type")]
         public BlockType Type { get; set; }
 
-        [JsonProperty("account")]
-        public string AccountNumber { get; set; }
-
         [JsonProperty("destination")]
         public string Destination { get; set; }
-
-        [JsonProperty("source")]
-        public string Source { get; set; }
 
         [JsonProperty("previous")]
         public string Previous { get; set; }
@@ -38,9 +32,6 @@ namespace RaiBlocks.Results
 
         [JsonProperty("balance")]
         public string Balance { get; set; }
-
-        [JsonProperty("amount")]
-        public string Amount { get; set; }
 
         [JsonProperty("signature")]
         public string Signature { get; set; }
