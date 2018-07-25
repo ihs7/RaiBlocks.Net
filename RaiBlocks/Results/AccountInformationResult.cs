@@ -5,7 +5,7 @@ using System;
 
 namespace RaiBlocks.Results
 {
-    public class AccountInformationResult
+    public class AccountInformationResult : ErrorResult
     {
         [JsonProperty("frontier")]
         public string Frontier { get; set; }
