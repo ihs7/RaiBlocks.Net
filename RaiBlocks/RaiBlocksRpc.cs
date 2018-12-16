@@ -48,8 +48,12 @@ namespace RaiBlocks
             => await Handle<GetAccountBlockCount, AccountBlockCountResult>(new GetAccountBlockCount(acc));
 
         /// <summary>
-        /// Returns frontier, open block, change representative block, balance, last modified timestamp from local database & block count for account
+        /// Get information about account
         /// </summary>
+        /// <returns>
+        ///     Returns frontier, open block, change representative block, balance, 
+        ///     last modified timestamp from local database and block count for account
+        /// </summary></returns>
         public async Task<AccountInformationResult> GetAccountInformationAsync(RaiAddress acc) 
             => await Handle<GetAccountInformation, AccountInformationResult>(new GetAccountInformation(acc));
 
