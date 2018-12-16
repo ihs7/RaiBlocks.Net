@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using RaiBlocks.Interfaces;
 using RaiBlocks.Results;
 
@@ -14,11 +15,11 @@ namespace RaiBlocks.Actions
         public string Action { get; } = "account_create";
 
         [JsonProperty("wallet")]
-        public string Wallet { get; set; }
+        public string Wallet { get; private set; }
 
         public CreateAccount(string wallet)
         {
-            Wallet = wallet;
+            Wallet = wallet ?? throw new ArgumentNullException(nameof(wallet));
         }
     }
 }

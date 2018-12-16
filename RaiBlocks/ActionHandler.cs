@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace RaiBlocks
 {
-    public class ActionHandler<TAction, TResult> : IActionHandler<TAction, TResult>
-            where TAction : IAction<TResult>
-            where TResult : class
+    public class ActionHandler<TAction, TResult> : IActionHandler<IAction<TResult>, TResult>
+            where TAction : class, IAction<TResult>
+            where TResult : class, IActionResult
     {
         private Uri _node;
 
@@ -18,9 +18,14 @@ namespace RaiBlocks
             _node = node ?? throw new ArgumentNullException(nameof(node));
         }
 
-        public async Task<TResult> Handle(TAction action)
+        public async Task<TResult> Handle(IAction<TResult> action)
         {
-            var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(action));
+            var jsonSerializerSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            };
+
+            var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(action, Formatting.None, jsonSerializerSettings));
             var httpContent = new StringContent(stringPayload, Encoding.UTF8, "application/json");
 
             using (var httpClient = new HttpClient())

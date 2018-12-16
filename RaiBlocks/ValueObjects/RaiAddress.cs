@@ -57,13 +57,7 @@ namespace RaiBlocks.ValueObjects
 
         public static bool operator ==(RaiAddress a, RaiAddress b)
         {
-            if (ReferenceEquals(a, b))
-                return true;
-
-            if (((object)a == null) || ((object)b == null))
-                return false;
-
-            return a.Equals(b);
+            return ReferenceEquals(a, b) ? true : (a is null) || (b is null) ? false : a.Equals(b);
         }
 
         public static bool operator !=(RaiAddress a, RaiAddress b)
