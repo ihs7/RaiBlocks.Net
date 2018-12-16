@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using RaiBlocks.Converters;
 using RaiBlocks.Interfaces;
+using RaiBlocks.ValueObjects;
 
 namespace RaiBlocks.Results
 {
@@ -14,7 +15,7 @@ namespace RaiBlocks.Results
     public class BlocksInfo
     {
         [JsonProperty("block_account")]
-        public string BlockAccount { get; set; }
+        public RaiBlock BlockAccount { get; set; }
         
         [JsonProperty("amount")]
         public string Amount { get; set; }

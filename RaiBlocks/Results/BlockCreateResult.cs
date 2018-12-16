@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RaiBlocks.Interfaces;
+using RaiBlocks.ValueObjects;
 
 namespace RaiBlocks.Results
 {
@@ -9,6 +10,6 @@ namespace RaiBlocks.Results
         public string Hash { get; set; }
 
         [JsonProperty("block")]
-        public string Block { get; set; }
+        public RaiBlock Block { get; set; }
     }
 }

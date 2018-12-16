@@ -12,9 +12,9 @@ namespace RaiBlocks.Converters
     /// <typeparam name="T">Deserialized object/</typeparam>
     public class JsonParseConverter<T> : JsonConverter
     {
-        public override bool CanConvert(Type objectType) => typeof(System.String).Equals(objectType);
+        public override bool CanConvert(Type objectType) => typeof(string).Equals(objectType);
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) => JObject.Parse(JObject.ReadFrom(reader).Value<string>()).ToObject<T>();
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) => JObject.Parse(JToken.ReadFrom(reader).Value<string>()).ToObject<T>();
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => serializer.Serialize(writer, value.ToString());
     }

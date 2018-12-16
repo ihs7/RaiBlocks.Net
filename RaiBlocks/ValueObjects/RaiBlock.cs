@@ -1,14 +1,13 @@
-﻿using RaiBlocks.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace RaiBlocks.ValueObjects
 {
-    public class RaiAddress : ValueObject
+    public class RaiBlock : ValueObject
     {
         public string Value { get; }
 
-        public RaiAddress(string value)
+        public RaiBlock(string value)
         {
             if (!value.StartsWith("xrb_"))
                 throw new ArgumentException("Illegal address - Does not start with xrb_");
@@ -19,9 +18,9 @@ namespace RaiBlocks.ValueObjects
             Value = value;
         }
 
-        private RaiAddress() { }
+        private RaiBlock() { }
 
-        public override string ToString() 
+        public override string ToString()
             => Value;
 
         protected override IEnumerable<object> GetEqualityComponents()
@@ -29,7 +28,7 @@ namespace RaiBlocks.ValueObjects
             yield return Value;
         }
 
-        public static implicit operator string(RaiAddress x) 
+        public static implicit operator string(RaiBlock x)
             => x.Value;
     }
 }

@@ -155,6 +155,9 @@ namespace RaiBlocks
         public async Task<BlockCreateResult> BlockCreateSendAsync(BlockCreate createBlockAction)
             => await Handle<BlockCreate, BlockCreateResult>(createBlockAction);
 
+        public async Task<GetChainResult> GetChainAsync(string block, long count)
+            => await Handle<GetChain, GetChainResult>(new GetChain(block, count));
+
         private async Task<TResult> Handle<TAction, TResult>(IAction<TResult> action)
             where TAction : class, IAction<TResult>
             where TResult : class, IActionResult

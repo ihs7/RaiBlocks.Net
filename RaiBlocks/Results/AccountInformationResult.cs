@@ -12,10 +12,10 @@ namespace RaiBlocks.Results
         public string Frontier { get; set; }
 
         [JsonProperty("open_block")]
-        public string OpenBlock { get; set; }
+        public RaiBlock OpenBlock { get; set; }
 
         [JsonProperty("representative_block")]
-        public string RepresentativeBlock { get; set; }
+        public RaiBlock RepresentativeBlock { get; set; }
 
         [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("balance")]
