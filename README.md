@@ -17,7 +17,7 @@ In order to compile RaiBlocks.Net, you require the following:
 ```csharp
 // Insert your node URI
 var node = new RaiBlocksRpc("http://localhost:7076/"); 
-var address = new RaiAddress("xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000")
+var address = new RaiAddress("xrb_3e3j5tkog48pnny9dmfzj1r16pg8t1e76dz5tmac6iq689wyjfpi00000000");
 var res = await _node.GetBalanceAsync(address);
 ```
 
@@ -32,6 +32,4 @@ var res = await _node.CreateAccountAsync("000D1BAEC8EC208142C99059B393051BAC8380
 
 ## Donations
 If you like what you see, feel free to send me some XRB:
-
 xrb_3gheyy3ud6k168c57hyjwnrkiyqubpod9symzdcazxzi8n1at4j9yt859of9
-xrb_19rm3846etzyordsgycpe1shk66paqy4bu1e7iiaxzj9wq8877s7tewfd6h6
