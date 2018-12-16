@@ -8,6 +8,13 @@ namespace RaiBlocks.Actions
 {
     public class Send : IAction<SendResult>
     {
+        public Send(string wallet, RaiAddress source, RaiAddress destination, RaiUnits.RaiRaw amount)
+        {
+            Wallet = wallet;
+            Destination = destination;
+            Amount = amount;
+        }
+
         [JsonProperty("action")]
         public string Action { get; } = "send";
 
@@ -23,12 +30,5 @@ namespace RaiBlocks.Actions
         [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("send")]
         public RaiUnits.RaiRaw Amount { get; private set; }
-
-        public Send(string wallet, RaiAddress source, RaiAddress destination, RaiUnits.RaiRaw amount)
-        {
-            Wallet = wallet;
-            Destination = destination;
-            Amount = amount;
-        }
     }
 }

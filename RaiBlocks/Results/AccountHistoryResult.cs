@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RaiBlocks.Converters;
+using RaiBlocks.Interfaces;
 using RaiBlocks.ValueObjects;
 
 namespace RaiBlocks.Results
 {
-    public class AccountHistoryResult
+    public class AccountHistoryResult : IActionResult
     {
         [JsonProperty("history")]
         public SingleAccountHistory[] Entries { get; set; }

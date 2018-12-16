@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using RaiBlocks.Converters;
+using RaiBlocks.Interfaces;
 using RaiBlocks.ValueObjects;
 using System;
 
 namespace RaiBlocks.Results
 {
-    public class AccountInformationResult : ErrorResult
+    public class AccountInformationResult : IActionResultWithError
     {
         [JsonProperty("frontier")]
         public string Frontier { get; set; }
@@ -36,5 +37,8 @@ namespace RaiBlocks.Results
         [JsonConverter(typeof(StringToRawConverter))]
         [JsonProperty("pending")]
         public RaiUnits.RaiRaw Pending { get; set; }
+
+        [JsonProperty("error")]
+        public string Error { get; set; }
     }
 }

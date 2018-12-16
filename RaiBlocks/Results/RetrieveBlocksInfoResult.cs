@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using RaiBlocks.Converters;
+using RaiBlocks.Interfaces;
 
 namespace RaiBlocks.Results
 {
-    public class RetrieveBlocksInfoResult
+    public class RetrieveBlocksInfoResult : IActionResult
     {
         [JsonProperty("blocks")]
         public Dictionary<string, BlocksInfo> Blocks { get; set; }   
@@ -27,8 +28,8 @@ namespace RaiBlocks.Results
         [JsonProperty("balance")]
         public string Balance { get; set; }
         
-        [JsonConverter(typeof(JsonParseConverter<RetrieveBlock>))]
+        [JsonConverter(typeof(JsonParseConverter<RetrieveBlockContent>))]
         [JsonProperty("contents")]
-        public RetrieveBlock Contents { get; set; }
+        public RetrieveBlockContent Contents { get; set; }
     }
 }

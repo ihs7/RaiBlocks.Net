@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using RaiBlocks.Interfaces;
 
 namespace RaiBlocks.Results
 {
-    public class ErrorResult
+    public class ErrorResult : IActionResultWithError
     {
         [JsonProperty("error")]
         public string Error { get; set; }

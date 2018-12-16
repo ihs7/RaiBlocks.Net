@@ -1,18 +1,21 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using RaiBlocks.Interfaces;
 using RaiBlocks.Results;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RaiBlocks.Actions
 {
     public class RetrieveBlock : IAction<RetrieveBlockResult>
     {
+        public RetrieveBlock(string hash)
+        {
+            Hash = hash ?? throw new ArgumentNullException(nameof(hash));
+        }
+
         [JsonProperty("action")]
         public string Action { get; } = "block";
 
         [JsonProperty("hash")]
-        public string Hash { get; set; }
+        public string Hash { get; private set; }
     }
 }

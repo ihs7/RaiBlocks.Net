@@ -1,21 +1,19 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RaiBlocks.Converters;
+using RaiBlocks.Interfaces;
 using RaiBlocks.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RaiBlocks.Results
 {
-    public class RetrieveBlockResult
+    public class RetrieveBlockResult : IActionResult
     {
-        [JsonConverter(typeof(JsonParseConverter<RetrieveBlock>))]
+        [JsonConverter(typeof(JsonParseConverter<RetrieveBlockContent>))]
         [JsonProperty("contents")]
-        public RetrieveBlock Contents { get; set; }
+        public RetrieveBlockContent Contents { get; set; }
     }
 
-    public class RetrieveBlock
+    public class RetrieveBlockContent
     {
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("type")]

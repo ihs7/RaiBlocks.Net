@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
+using RaiBlocks.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace RaiBlocks.Results
 {
-    public class ValidateAccountResult
+    public class ValidateAccountResult : IActionResult
     {
         [JsonProperty("valid")]
         public Int16 Valid { get; set; }

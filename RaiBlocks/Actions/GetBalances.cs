@@ -18,7 +18,7 @@ namespace RaiBlocks.Actions
 
         public GetBalances(IEnumerable<RaiAddress> addresses)
         {
-            AccountsNumbers = addresses?.Select(x=> x.ToString()) ?? throw new ArgumentNullException(nameof(addresses));
+            AccountsNumbers = addresses?.Select(x => x.ToString()) ?? throw new ArgumentNullException(nameof(addresses));
         }
     }
 }

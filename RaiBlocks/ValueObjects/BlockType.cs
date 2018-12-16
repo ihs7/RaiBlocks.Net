@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RaiBlocks.ValueObjects
+﻿namespace RaiBlocks.ValueObjects
 {
     public enum BlockType
     {
-        open,
-        receive,
-        send,
-        change
+        Open = 0,
+        Receive = 1,
+        Send = 2,
+        Change = 3
     }
 }

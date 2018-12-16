@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using RaiBlocks.Interfaces;
 
 namespace RaiBlocks.Results
 {
-    public class BlockCreateResult
+    public class BlockCreateResult : IActionResult
     {
         [JsonProperty("hash")]
         public string Hash { get; set; }
